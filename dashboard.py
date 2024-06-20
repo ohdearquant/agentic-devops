@@ -52,7 +52,7 @@ def main():
                         gr.Markdown("### Detailed Log Entries")
                         detailed_logs = gr.Dataframe(headers=["Timestamp", "Log Level", "Message", "Source"], label="Detailed Log Entries")
                         log_search = gr.Textbox(label="Search Logs")
-                        filter_date = gr.DatePicker(label="Filter by Date")
+                        filter_date = gr.Textbox(label="Filter by Date (YYYY-MM-DD)")
                         filter_log_level = gr.Dropdown(label="Filter by Log Level", choices=["Info", "Warning", "Error"])
                         filter_source = gr.Textbox(label="Filter by Source")
                     with gr.Column(scale=1):
