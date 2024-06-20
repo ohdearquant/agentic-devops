@@ -43,13 +43,33 @@ def main():
                         response_time_trend = gr.LinePlot(label="Response Time Trend")
 
             with gr.TabItem("Logs"):
-                metrics = gr.Textbox(label="Metrics", interactive=False, lines=10)
-                workflow_status = gr.Textbox(label="Workflow Status", interactive=False, lines=10)
-                agent_monitor = gr.Textbox(label="Agent Monitor", interactive=False, lines=10)
-                request_logs = gr.Dataframe(headers=["Timestamp", "Input", "Output", "Response Time", "Token Usage"], label="Request Logs")
-                error_logs = gr.Dataframe(headers=["Timestamp", "Error Message"], label="Error Logs")
-                log_search = gr.Textbox(label="Search/Filter Logs")
-                export_logs_button = gr.Button("Export Logs")
+                with gr.Row():
+                    with gr.Column(scale=1):
+                        gr.Markdown("### Log Overview")
+                        recent_logs = gr.Dataframe(headers=["Timestamp", "Log Level", "Message"], label="Recent Logs")
+                        log_count = gr.Number(label="Log Count", interactive=False)
+                    with gr.Column(scale=2):
+                        gr.Markdown("### Detailed Log Entries")
+                        detailed_logs = gr.Dataframe(headers=["Timestamp", "Log Level", "Message", "Source"], label="Detailed Log Entries")
+                        log_search = gr.Textbox(label="Search Logs")
+                        filter_date = gr.Date(label="Filter by Date")
+                        filter_log_level = gr.Dropdown(label="Filter by Log Level", choices=["Info", "Warning", "Error"])
+                        filter_source = gr.Textbox(label="Filter by Source")
+                    with gr.Column(scale=1):
+                        gr.Markdown("### Log Metrics")
+                        error_rate = gr.Number(label="Error Rate (%)", interactive=False)
+                        log_volume = gr.Number(label="Log Volume", interactive=False)
+                        avg_response_time = gr.Number(label="Average Response Time (s)", interactive=False)
+                        gr.Markdown("### Visualization")
+                        log_volume_graph = gr.LinePlot(label="Log Volume Over Time")
+                        error_rate_graph = gr.LinePlot(label="Error Rate Over Time")
+                        response_time_trend = gr.LinePlot(label="Response Time Trend")
+                        gr.Markdown("### Log Details Panel")
+                        full_message = gr.Textbox(label="Full Message", interactive=False, lines=5)
+                        metadata_display = gr.Textbox(label="Metadata", interactive=False, lines=5)
+                        gr.Markdown("### Export and Integration Options")
+                        export_logs_button = gr.Button("Export Logs")
+                        integration_options = gr.Dropdown(label="Integration Options", choices=["Datadog", "Splunk"])
 
             with gr.TabItem("Metrics"):
                 throughput_chart = gr.LinePlot(label="Throughput Over Time")
