@@ -22,23 +22,25 @@ def main():
                     with gr.Column(scale=1):
                         input_text = gr.Textbox(label="Input Text", lines=5)
                         output_text = gr.Textbox(label="Output Text", interactive=False, lines=5)
+                        model_selection = gr.Dropdown(label="Model Selection", choices=["Model A", "Model B", "Model C"])
+                        temperature = gr.Number(label="Temperature")
+                        max_tokens = gr.Number(label="Max Tokens")
+                        error_logs = gr.Dataframe(headers=["Timestamp", "Error Message", "Stack Trace"], label="Error Logs")
                     with gr.Column(scale=1):
-                        with gr.Row():
-                            submit_button = gr.Button("Submit")
-                            clear_button = gr.Button("Clear")
-                            save_button = gr.Button("Save Input/Output")
+                        submit_button = gr.Button("Submit")
+                        clear_button = gr.Button("Clear")
+                        save_button = gr.Button("Save Input/Output")
                         response_time = gr.Number(label="Response Time (s)", interactive=False)
                         token_usage = gr.Number(label="Token Usage", interactive=False)
                         status_indicator = gr.Textbox(label="Status", interactive=False)
+                        response_time_trend = gr.LinePlot(label="Response Time Trend")
+                        token_usage_trend = gr.LinePlot(label="Token Usage Trend")
                     with gr.Column(scale=1):
                         request_details = gr.Textbox(label="Request Details", interactive=False, lines=5)
                         output_details = gr.Textbox(label="Output Details", interactive=False, lines=5)
                         previous_requests = gr.Dataframe(headers=["Timestamp", "Input", "Output", "Response Time", "Token Usage"], label="Previous Requests")
                         saved_io = gr.Dataframe(headers=["Timestamp", "Input", "Output"], label="Saved Inputs/Outputs")
                         response_time_trend = gr.LinePlot(label="Response Time Trend")
-                        token_usage_trend = gr.LinePlot(label="Token Usage Trend")
-                        error_logs = gr.Dataframe(headers=["Timestamp", "Error Message"], label="Error Logs")
-                        parameter_input_fields = gr.Textbox(label="Parameter Input Fields", lines=5)
 
             with gr.TabItem("Logs"):
                 metrics = gr.Textbox(label="Metrics", interactive=False, lines=10)
