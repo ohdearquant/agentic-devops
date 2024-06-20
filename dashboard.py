@@ -37,6 +37,8 @@ def main():
                         saved_io = gr.Dataframe(headers=["Timestamp", "Input", "Output"], label="Saved Inputs/Outputs")
                         response_time_trend = gr.LinePlot(label="Response Time Trend")
                         token_usage_trend = gr.LinePlot(label="Token Usage Trend")
+                        error_logs = gr.Dataframe(headers=["Timestamp", "Error Message"], label="Error Logs")
+                        parameter_input_fields = gr.Textbox(label="Parameter Input Fields", lines=5)
 
             with gr.TabItem("Logs"):
                 metrics = gr.Textbox(label="Metrics", interactive=False, lines=10)
