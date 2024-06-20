@@ -24,6 +24,9 @@ def main():
                         submit_button = gr.Button("Submit")
                         clear_button = gr.Button("Clear")
                         save_button = gr.Button("Save Input/Output")
+                        metrics = gr.Textbox(label="Metrics", interactive=False, lines=10)
+                        workflow_status = gr.Textbox(label="Workflow Status", interactive=False, lines=10)
+                        agent_monitor = gr.Textbox(label="Agent Monitor", interactive=False, lines=10)
                     with gr.Column():
                         output_text = gr.Textbox(label="Output Text", interactive=False)
                         response_time = gr.Number(label="Response Time (s)", interactive=False)
@@ -66,8 +69,8 @@ def main():
             output, time_taken, tokens = llm_workflow(input_text)
             request_logs.update([{"Timestamp": time.ctime(), "Input": input_text, "Output": output, "Response Time": time_taken, "Token Usage": tokens}])
             metrics.update(f"Response Time: {time_taken}s\nToken Usage: {tokens}")
-            workflow_status.update("Workflow completed successfully.")
-            agent_monitor.update("All agents are running smoothly.")
+            workflow_status.update(f"Workflow completed successfully at {time.ctime()}.")
+            agent_monitor.update(f"All agents are running smoothly at {time.ctime()}.")
             return output, time_taken, tokens
 
         def clear_fields():
