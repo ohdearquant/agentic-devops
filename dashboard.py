@@ -49,7 +49,7 @@ def main():
             with gr.TabItem("Workflow Status"):
                 active_workflows = gr.Dataframe(headers=["Workflow ID", "Status"], label="Active Workflows")
                 workflow_history = gr.Dataframe(headers=["Workflow ID", "Status", "Completion Time"], label="Workflow History")
-                workflow_dependency_graph = gr.Graph(label="Workflow Dependency Graph")
+                workflow_dependency_graph = gr.Plot(label="Workflow Dependency Graph")
                 refresh_workflow_button = gr.Button("Refresh Workflows")
                 view_details_button = gr.Button("View Details")
 
