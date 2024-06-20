@@ -60,8 +60,8 @@ def main():
                 view_agent_details_button = gr.Button("View Agent Details")
 
             with gr.TabItem("Settings"):
-                config_management = gr.Form(label="Configuration Management")
-                user_management = gr.Form(label="User Management")
+                config_management = gr.Accordion(label="Configuration Management")
+                user_management = gr.Accordion(label="User Management")
                 save_settings_button = gr.Button("Save Settings")
                 reset_settings_button = gr.Button("Reset Settings")
 
