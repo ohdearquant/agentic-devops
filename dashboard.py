@@ -98,6 +98,11 @@ def main():
                 save_settings_button = gr.Button("Save Settings")
                 reset_settings_button = gr.Button("Reset Settings")
 
+        request_logs = gr.Dataframe(headers=["Timestamp", "Input", "Output", "Response Time", "Token Usage"], label="Request Logs")
+        metrics = gr.Textbox(label="Metrics", interactive=False, lines=10)
+        workflow_status = gr.Textbox(label="Workflow Status", interactive=False, lines=10)
+        agent_monitor = gr.Textbox(label="Agent Monitor", interactive=False, lines=10)
+
         def run_workflow(input_text):
             output, time_taken, tokens = llm_workflow(input_text)
             request_logs.update([{"Timestamp": time.ctime(), "Input": input_text, "Output": output, "Response Time": time_taken, "Token Usage": tokens}])
@@ -153,6 +158,17 @@ def main():
             pass
 
         submit_button.click(run_workflow, inputs=input_text, outputs=[output_text, response_time, token_usage])
+        clear_button.click(clear_fields)
+        save_button.click(save_input_output)
+        export_logs_button.click(export_logs)
+        refresh_metrics_button.click(refresh_metrics)
+        download_report_button.click(download_report)
+        refresh_workflow_button.click(refresh_workflows)
+        view_details_button.click(view_workflow_details)
+        refresh_agent_button.click(refresh_agents)
+        view_agent_details_button.click(view_agent_details)
+        save_settings_button.click(save_settings)
+        reset_settings_button.click(reset_settings)
         clear_button.click(clear_fields)
         save_button.click(save_input_output)
         export_logs_button.click(export_logs)
