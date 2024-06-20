@@ -20,17 +20,29 @@ def main():
             with gr.TabItem("Input/Output"):
                 with gr.Row():
                     with gr.Column():
-                        input_text = gr.Textbox(label="Input Text")
-                        submit_button = gr.Button("Submit")
-                        clear_button = gr.Button("Clear")
-                        save_button = gr.Button("Save Input/Output")
-                        metrics = gr.Textbox(label="Metrics", interactive=False, lines=10)
-                        workflow_status = gr.Textbox(label="Workflow Status", interactive=False, lines=10)
-                        agent_monitor = gr.Textbox(label="Agent Monitor", interactive=False, lines=10)
+                        input_text = gr.Textbox(label="Input Text", lines=5)
+                        output_text = gr.Textbox(label="Output Text", interactive=False, lines=5)
+                        with gr.Row():
+                            submit_button = gr.Button("Submit")
+                            clear_button = gr.Button("Clear")
+                            save_button = gr.Button("Save Input/Output")
+                with gr.Row():
                     with gr.Column():
-                        output_text = gr.Textbox(label="Output Text", interactive=False)
                         response_time = gr.Number(label="Response Time (s)", interactive=False)
                         token_usage = gr.Number(label="Token Usage", interactive=False)
+                        status_indicator = gr.Textbox(label="Status", interactive=False)
+                with gr.Row():
+                    with gr.Column():
+                        request_details = gr.Textbox(label="Request Details", interactive=False, lines=5)
+                        output_details = gr.Textbox(label="Output Details", interactive=False, lines=5)
+                with gr.Row():
+                    with gr.Column():
+                        previous_requests = gr.Dataframe(headers=["Timestamp", "Input", "Output", "Response Time", "Token Usage"], label="Previous Requests")
+                        saved_io = gr.Dataframe(headers=["Timestamp", "Input", "Output"], label="Saved Inputs/Outputs")
+                with gr.Row():
+                    with gr.Column():
+                        response_time_trend = gr.LinePlot(label="Response Time Trend")
+                        token_usage_trend = gr.LinePlot(label="Token Usage Trend")
 
             with gr.TabItem("Logs"):
                 request_logs = gr.Dataframe(headers=["Timestamp", "Input", "Output", "Response Time", "Token Usage"], label="Request Logs")
