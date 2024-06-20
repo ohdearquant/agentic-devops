@@ -45,6 +45,9 @@ def main():
                         token_usage_trend = gr.LinePlot(label="Token Usage Trend")
 
             with gr.TabItem("Logs"):
+                metrics = gr.Textbox(label="Metrics", interactive=False, lines=10)
+                workflow_status = gr.Textbox(label="Workflow Status", interactive=False, lines=10)
+                agent_monitor = gr.Textbox(label="Agent Monitor", interactive=False, lines=10)
                 request_logs = gr.Dataframe(headers=["Timestamp", "Input", "Output", "Response Time", "Token Usage"], label="Request Logs")
                 error_logs = gr.Dataframe(headers=["Timestamp", "Error Message"], label="Error Logs")
                 log_search = gr.Textbox(label="Search/Filter Logs")
