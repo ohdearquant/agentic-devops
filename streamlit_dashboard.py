@@ -81,5 +81,4 @@ def main():
             st.write("Settings reset to default values!")
 
 if __name__ == "__main__":
-    st.warning("Please run this script using the command: `streamlit run streamlit_dashboard.py`")
-    st.stop()
+    main()
